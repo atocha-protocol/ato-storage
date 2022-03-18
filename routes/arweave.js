@@ -74,8 +74,8 @@ router.post('/localtest', async function (req, res, next) {
 
 
 /* GET arweave page. */
-router.all('/', async function (req, res, next) {
-    let output = 'done';
+router.post('/', async function (req, res, next) {
+    let output = {};
     let jsonStr = JSON.stringify(req.body);
     const jsonHash = sha256(jsonStr);
     const jsonLength = jsonStr.length;
@@ -110,12 +110,12 @@ router.all('/', async function (req, res, next) {
         if (response.status == 200) {
             console.log('Puzzle hash: ', result.id);
         }
-        output = JSON.stringify({result: 'ok', status: response.status, result_id: result.id, is_cache: false});
+        output = {result: 'ok', status: response.status, result_id: result.id, is_cache: false};
     }catch (e){
-        output = JSON.stringify({result: 'failed', infos: e.toString()});
+        output = {result: 'failed', infos: e.toString()};
         console.log(`On error:`, e);
     }
-    res.send(output);
+    res.json(output);
 });
 
 
