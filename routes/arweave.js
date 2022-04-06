@@ -33,7 +33,7 @@ async function getPolkadotApp() {
 
 async function getPreStorageOnChain(jsonHash, jsonLength){
     let polkadotApp = await getPolkadotApp();
-    let storageOnchain = await polkadotApp.query.atochaFinace.storageLedger(jsonHash, jsonLength);
+    let storageOnchain = await polkadotApp.query.atochaFinance.storageLedger(jsonHash, jsonLength);
     const storageLength = storageOnchain?storageOnchain.toHuman()?storageOnchain.toHuman().jsonLength:0:0;
     return storageLength
 }
