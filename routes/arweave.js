@@ -77,12 +77,12 @@ router.post('/localtest', async function (req, res, next) {
 router.post('/', async function (req, res, next) {
     let output = {};
     let jsonStr = JSON.stringify(req.body);
-    const jsonHash = sha256(jsonStr);
+    const jsonHash = sha256(encodeURIComponent(jsonStr));
     const jsonLength = jsonStr.length;
     console.log('jsonStr', jsonStr);
     console.log('jsonHash', jsonHash);
     console.log('jsonLength', jsonLength);
-    console.log('debug=', sha256(encodeURIComponent('加油加油，中文')));
+    // console.log('debug=', sha256(encodeURIComponent('加油加油，中文')));
     console.log(console.log(process.env.ATO_STORAGE_APP_VERSION));
     const storageLength = await getPreStorageOnChain(jsonHash, jsonLength);
     if (storageLength <= 0){
