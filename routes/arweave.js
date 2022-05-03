@@ -111,8 +111,11 @@ router.post('/', async function (req, res, next) {
         console.log(response.status);
         if (response.status == 200) {
             console.log('Puzzle hash: ', result.id);
+            output = {result: 'ok', status: response.status, result_id: result.id, is_cache: false};
+        }else{
+            console.log('Puzzle status: ', response.status, );
+            output = {result: 'failed', infos: `Status:${response.status}`};
         }
-        output = {result: 'ok', status: response.status, result_id: result.id, is_cache: false};
     }catch (e){
         output = {result: 'failed', infos: e.toString()};
         console.log(`On error:`, e);
