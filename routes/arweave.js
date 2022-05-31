@@ -27,7 +27,7 @@ let arweave_real = Arweave.init({
 })
 
 async function getPolkadotApp() {
-    const wsProvider = new WsProvider(process.env.ATO_ATOCHA_TESTNET_WS);
+    const wsProvider = new WsProvider(process.env.ATO_ATOCHA_CHAIN_WS);
     return await ApiPromise.create({provider: wsProvider});
 }
 
