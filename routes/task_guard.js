@@ -107,12 +107,15 @@ function getTaskReward(task_id) {
     })
 }
 
-function updateTaskRequestStatus(request_id, status) {
+function updateTaskRequestStatus(request_id, status, txHash='') {
     return new Promise((resolve, reject)=>{
         var conn = getMysqlConn();
         conn.connect();
         // Update data to pending
         let sqlStr = `UPDATE atocha_app.task_request SET request_status = ${status} WHERE (id = ${request_id})`;
+        if(txHash != '') {
+            sqlStr = `UPDATE atocha_app.task_request SET request_status = ${status}, request_expand = '${txHash}' WHERE (id = ${request_id})`;
+        }
         console.log(sqlStr)
         conn.query(sqlStr, function (error, results, fields) {
             if (error) {
@@ -164,7 +167,7 @@ function sendReward(dbData) {
                           console.log(`Transaction finalized at blockHash ${result.status.asFinalized}`);
                           unsub();
                           // Update db to REQUEST_STATUS_IS_FINAL
-                          updateTaskRequestStatus(dbData.id, REQUEST_STATUS_IS_FINAL)
+                          updateTaskRequestStatus(dbData.id, REQUEST_STATUS_IS_FINAL, result.status.finalized)
                           resolve(result)
                       }
                   });
