@@ -45,3 +45,7 @@ ATO_STORAGE_CONN_REAL_PROTOCOL='https'
 ATO_ATOCHA_CHAIN_WS='ws://X.X.X.X:XXXX'
 ```
 
+### Install mysql
+* Reference: `https://www.npmjs.com/package/mysql#install`
+* `npm install mysqljs/mysql`
+

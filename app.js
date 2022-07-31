@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var arRouter = require('./routes/arweave');
+var taskGurad = require('./routes/task_guard');
 var usersRouter = require('./routes/users');
 var cors = require("cors");
 
@@ -27,11 +28,13 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/ar', arRouter);
 app.use('/users', usersRouter);
+app.use('/task', taskGurad);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -44,4 +47,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 process.env.PORT = 8000;
-module.exports = app;
+
+module.exports = app ;

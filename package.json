@@ -18,6 +18,8 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
+    "mysql": "github:mysqljs/mysql",
+    "mysql2": "^2.3.3",
     "sha256": "^0.2.0",
     "sqlite3": "^5.0.2",
     "testweave-sdk": "^0.2.2"

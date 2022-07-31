@@ -9,6 +9,7 @@ var TestWeave = require('testweave-sdk');
 var request=require('request');
 var sha256 =require('sha256');
 const {ApiPromise, WsProvider} = require('@polkadot/api') ;
+const {getPolkadotApp} = require('../polkadot_tools')
 
 let arweave_test = Arweave.init({
     host: process.env.ATO_STORAGE_CONN_TEST_HOST,
@@ -25,11 +26,6 @@ let arweave_real = Arweave.init({
     timeout: 20000,
     logging: false,
 })
-
-async function getPolkadotApp() {
-    const wsProvider = new WsProvider(process.env.ATO_ATOCHA_CHAIN_WS);
-    return await ApiPromise.create({provider: wsProvider});
-}
 
 async function getPreStorageOnChain(jsonHash, jsonLength){
     let polkadotApp = await getPolkadotApp();
