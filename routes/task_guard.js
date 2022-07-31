@@ -167,7 +167,7 @@ function sendReward(dbData) {
                           console.log(`Transaction finalized at blockHash ${result.status.asFinalized}`);
                           unsub();
                           // Update db to REQUEST_STATUS_IS_FINAL
-                          updateTaskRequestStatus(dbData.id, REQUEST_STATUS_IS_FINAL, result.status.finalized)
+                          updateTaskRequestStatus(dbData.id, REQUEST_STATUS_IS_FINAL, result.status.asFinalized)
                           resolve(result)
                       }
                   });
